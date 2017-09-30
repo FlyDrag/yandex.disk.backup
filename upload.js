@@ -43,8 +43,10 @@ try {
 	else {
             (function next() {
                 disk.uploadSplitFile(fileName, dstPath, chunkSize, function(err, res) {
-                    console.log(err);
-                    setTimeout(next, 10000);
+                    if (err) {
+                        console.log(err);
+                        setTimeout(next, 10000);
+                    };
                 });
             })();
 	};
