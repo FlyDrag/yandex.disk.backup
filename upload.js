@@ -41,8 +41,12 @@ try {
 	    console.log(err);
 	}
 	else {
-	    disk.uploadSplitFile(fileName, dstPath, chunkSize, function(err, res) {
-	    });
+            (function next() {
+                disk.uploadSplitFile(fileName, dstPath, chunkSize, function(err, res) {
+                    console.log(err);
+                    setTimeout(next, 10000);
+                });
+            })();
 	};
     });
 }
